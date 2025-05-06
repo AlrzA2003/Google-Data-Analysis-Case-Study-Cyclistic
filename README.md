@@ -48,17 +48,16 @@ This project is built using the following tools:
 ### **Analysis (`annual_trips_analyze.ipynb`)**  
 - **Descriptive statistics** on ride duration and frequency  
 - **Patterns in peak riding times** (weekday vs. weekend comparisons)  
-- **Differences in bike type preferences**  
-- **Seasonality analysis** (Monthly usage variations)  
+- **Differences in bike type preferences**   
 
 ### **Sharing & Visualization (`annual_trips_share.ipynb`)**  
-- Generating plots for ride distribution trends (`monthly_ride_distribution.png`, `monthly_ride_distribution_by_member.png`)  
-- Creating an **interactive dashboard** in Tableau Public  
+- Generating plots for ride distribution trends
+- **Seasonality analysis** (Monthly usage variations)    
 
 ## Key Findings  
 
 ### **Ride Length Trends**  
-Casual riders have **longer trips on average (23 min 41 sec)** compared to annual members (**12 min 17 sec**), suggesting they primarily use Cyclistic for leisure rather than commuting.  
+Casual riders have **longer trips on average** compared to annual members, suggesting they primarily use Cyclistic for leisure rather than commuting.  
 
 ### **Weekday vs. Weekend Usage**  
 - Casual riders **peak on Thursdays–Saturdays**, with fewer trips early in the week.  
