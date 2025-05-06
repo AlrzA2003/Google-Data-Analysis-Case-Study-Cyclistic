@@ -1,0 +1,120 @@
+---
+title: "Cyclistic's Data Analysis Report"
+author: "Alireza Mohebbi"
+date: "2025-05-04"
+output: 
+  html_document:
+    md_extensions: +lists_without_preceding_blankline
+    css: styles.css
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# ------------------------------------------------------------------------------
+
+## Business Task
+
+Analyze **Cyclistic’s historical bike trip data** to identify key differences in how annual members and casual riders use the service. The goal is to identify patterns and relationships that influence membership decisions for users. Based on the findings, provide three data-driven recommendations to help marketing team for converting more casual riders into annual members.
+
+# ------------------------------------------------------------------------------
+
+## Data Preparation
+
+The data used for this analysis is collected by **Motivate International Inc.**, an original, credible first-party data source. The data is publicly available under this [license](https://divvybikes.com/data-license-agreement). The data is downloaded from [divvy_trip_data](https://divvy-tripdata.s3.amazonaws.com/index.html), and stored in `annual_divvy_trips\raw_data` folder, containing historical trip data from **March 2024** to **February 2025**, including all features needed for analysis (_Though it would be ideal to have other specific features like weather situation_). each dataset has the same column headers as other datasets, ensuring data integrity and make them perfect for data merging.
+
+# ------------------------------------------------------------------------------
+
+## Data Cleansing
+
+_There are plenty of tools to use, like R, Pandas, Excel, and Google Sheets. The step-by-step process using Pandas is available in `annual_trips_process.ipynb` notebook._
+
+Both cleaned and backups of the data are available under `annual_divvy_trips\annual_trips` folder.
+
+Clean data includes:  
+- all datasets are combined into **one single dataset** (`annual_trips_mar2024_feb2025_v01.csv`) to **improve integrity** and to make it easy to **analyze** and **visualize**.  
+- 211 duplicated records removed (based on `ride_id` column).  
+- Records containing missing important fields are dropped.  
+- Observations with inaccuracies (start time later than end time, geographical coordinates that are not inside Chicago) are dropped.  
+- The following fields have been added to the dataset:  
+  - **ride_length:** The time difference between `started_at` and `ended_at`.
+  - **day_of_week:** Represents the starting day of each trip, recorded as an integer where 1 corresponds to `Sunday` and 7 corresponds to `Saturday`.
+  - **length_dif_secs:** The total time difference in seconds, for better visualization.
+
+The cleaned dataset has been saved as `annual_trips_mar2024_feb2025_v02.csv` for further analysis and reference.  
+
+# ------------------------------------------------------------------------------
+
+## Analyzing the data
+_There are plenty of tools to use, like R, Pandas, Excel, and Google Sheets. The step-by-step process using Pandas is available in `annual_trips_analyze.ipynb` notebook._
+
+Both summary data and backups are available under `annual_divvy_trips\annual_trips` folder.
+
+
+Our analysis leverages summary table to shed light on the behavioral differences between `casual riders` and `annual members`.
+
+### Ride Length
+
+Examining the overall ride length reveals a clear distinction between the two groups:
+- **Casual Riders:** Average ride length is approximately 23 minutes and 41 seconds.
+- **Annual Members:** Average ride length is approximately 12 minutes and 17 seconds.
+
+This near two‑fold difference clearly indicates that casual riders are inclined toward longer, likely leisure‑oriented trips, whereas annual members use the service for shorter, more routine trips—possibly for commuting.
+
+The daily breakdown of average ride lengths reinforces these insights. Across every day of the week, casual riders consistently record higher ride durations. Notably, on later days of the week (typically corresponding to the weekend), ride lengths for casual riders show a modest increase, suggesting that leisure activities may extend ride times further during off‑peak days.
+
+### Ride Frequency
+
+A review of the ride counts per day further illustrates the differences in usage patterns:
+- **Annual Members:** Exhibit higher ride counts during the weekdays, reflecting a regular, commute‑driven usage pattern.
+- **Casual Riders:** Although their overall ride frequencies are lower during the typical workweek, they display a pronounced spike on Fridays and Saturdays. This pattern aligns with casual usage that is more recreational in nature.
+
+### Combined Insights
+
+- **Distinct Behavioral Profiles:** Casual riders not only take longer trips on average, but their usage peaks during the weekend highlight a predominantly leisure‑oriented pattern. In contrast, annual members show a more balanced and consistent ride distribution throughout the week, indicative of a commuter-focused demographic.
+- **Business Implications:** These findings offer actionable insights for targeted marketing strategies:
+  - **Weekend Incentives:** Tailored promotions or weekend packages could capture the interest of casual riders, potentially converting them into annual members.
+  - **Flexible Membership Options:** Introducing flexible trial periods or discounted memberships during weekends may encourage casual users to explore the benefits of annual plans.
+  - **Communication of Value:** Marketing campaigns that emphasize the convenience and cost‑effectiveness of the annual plan for regular, shorter rides might better resonate with current members, while highlighting the leisure benefits could appeal to casual riders.
+
+Overall, the distinct differences in ride duration and frequency underscore the need for customized approaches in customer conversion strategies. Understanding these behavioral nuances enables a more effective alignment of service offerings with user expectations, ultimately supporting efforts to boost membership conversion rates.
+
+# ------------------------------------------------------------------------------
+
+## Sharing the insights
+_The step-by-step process using Pandas is available in `annual_trips_analyze.ipynb` notebook._  
+
+---
+title: "Cyclistic Trip Data Analysis"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# ------------------------------------------------------------------------------
+
+## Sharing the Insights  
+
+The insights generated from this analysis provide valuable data-driven findings that can enhance Cyclistic’s membership conversion strategies. The results have been **shared through multiple formats** to ensure accessibility and effective communication for stakeholders.  
+
+### Presentation and Visualization  
+
+- **PowerPoint Report:** A structured presentation summarizing the key findings has been compiled in `Annual_Trips_Insights.pptx`, offering a concise, visually engaging overview for business discussions.  
+  - **Main Question Answered:** How do annual members and casual riders use Cyclistic bikes differently?  
+  - **Additional Questions Explored:**  
+    - **How do casual riders' weekday and weekend usage patterns compare to those of annual members?**  
+    - **Which type of bike is most favored by both casual and annual members?**  
+    - **Do casual riders exhibit different trip durations compared to annual members?**  
+    - **What impact does seasonality have on ridership trends?**  
+
+- **Tableau Public Dashboard:** An interactive dashboard titled **"Google Data Analysis Case Study | Cyclistic's Trip Data"** has been published on [Tableau Public](https://public.tableau.com/views/Book2_17462764518790/HowdoannualmembersandcasualridersuseCyclisticbikesdifferently?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link), allowing users to explore ridership patterns dynamically.  
+
+### Implications for Stakeholders  
+
+These findings offer **concrete insights** for data-informed decision-making:  
+- **Marketing teams** can leverage the results to design targeted campaigns focused on casual riders' peak usage times.  
+- **Business strategists** can use the data to refine membership incentives, emphasizing cost-effectiveness for high-duration casual trips.  
+- **Operational teams** can optimize bike availability based on seasonal fluctuations, ensuring a seamless customer experience year-round.  
